@@ -1,11 +1,123 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Head from '../components/Head.vue';
+import Block from '../components/Block.astro';
+import Card from '../components/Card.astro';
+const nombre;
 ---
 
 <Layout>
-	<Welcome />
+    <div>
+        <Head></Head>
+
+        <!-- contenedor Slide -->
+        <div class="bg-[#F7F7F7] w-screen h-[150px] shadow-gray-300 shadow-sm flex px-36">
+            <button id="Bback" class="">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10" viewBox="0 0 24 24">
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14 7l-5 5m0 0l5 5" />
+                </svg>
+            </button>
+            <div id="Slide1" class="flex w-[800px] items-center overflow-hidden  ">
+                <Block >
+                    <h1 slot="text1" class="text-[20px] text-black" >Comprar Novedades</h1>
+                    <h1 slot="text2" class="text-[15px] text-black underline ml-10">Comprar</h1>
+                </Block>
+
+                <Block>
+                    <h1 slot="text1" class="text-[20px] text-black" >DEVOLUCIONES AMPLIADAS DURANTE LAS FIESTAS</h1>
+                    <h1 slot="text1" class="text-[15px] text-black ml-6" >A las compras Nike realizadas entre el 1 de noviembre y el 31 de diciembre de 2024 se les aplicará una política de devoluciones ampliada de 60 días. Obtén más información y únete</h1>
+                    
+                </Block>
+            </div>
+            <button id="Bnext" class="ml-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10    " viewBox="0 0 12 24">
+                    <path fill="currentColor" fill-rule="evenodd" d="M10.157 12.711L4.5 18.368l-1.414-1.414l4.95-4.95l-4.95-4.95L4.5 5.64l5.657 5.657a1 1 0 0 1 0 1.414" />
+                </svg>
+            </button>
+           
+        
+        </div>
+        <!-- SeccionNuvosProductos -->
+         <div class="flex items-center mx-24 pt-8">
+            <h1 class="text-black text-[25px] font-semibold">Nuevos productos(330)
+            </h1>
+
+            <div class="flex items-center ml-auto cursor-pointer">
+            <h1>
+                Ocultar filtros
+            </h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 5h-3m-4.25-2v4M13 5H3m4 7H3m7.75-2v4M21 12H11m10 7h-3m-4.25-2v4M13 19H3" />
+            </svg>
+            </div>
+            <div class="flex items-center ml-10 cursor-pointer  group">
+            <h1>
+                Ordenador Por
+            </h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <path fill="currentColor" d="M8.037 11.166L14.5 22.36c.825 1.43 2.175 1.43 3 0l6.463-11.195c.826-1.43.15-2.598-1.5-2.598H9.537c-1.65 0-2.326 1.17-1.5 2.6z" />
+            </svg>
+            <div class="absolute h-auto w-32 hidden group-hover:block pt-28 "  >
+                <h1 class="pb-3 hover:text-[18px]">Destacado</h1>
+                <h1 class="pb-3 hover:text-[18px]">Mas Reciente</h1>
+            </div>
+            </div>
+        </div>
+        <div>
+        <div id="Filtros"></div>
+        <div id="inventario" class="grid-cols-3 grid grid-rows-3 px-[5%] justify-evenly  ">
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            <Card>
+                <img class="h-[200px]" slot="imagen" src="nike1.png" alt="">
+                <h1 slot="modelo">Nike-190</h1>
+            </Card>
+            
+        </div>
+        </div>
+    </div>
 </Layout>
+
+    <!-- Slide Bucle -->
+    <script>
+        const slider = document.getElementById('Slide1');
+        const nextButton = document.getElementById('Bnext');
+        const backButton = document.getElementById('Bback');
+        const can = 800;
+
+        nextButton.addEventListener('click', function() {
+            if (slider.scrollLeft + slider.offsetWidth >= slider.scrollWidth) {
+                slider.scrollLeft = 0;
+            } else {
+                slider.scrollLeft += can;
+            }
+        });
+
+        backButton.addEventListener('click', function() {
+            if (slider.scrollLeft <= 0) {
+                slider.scrollLeft = slider.scrollWidth - slider.offsetWidth;
+            } else {
+                slider.scrollLeft -= can;
+            }
+        });
+    </script>
+
+
